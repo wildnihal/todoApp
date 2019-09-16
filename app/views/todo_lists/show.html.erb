@@ -1,11 +1,18 @@
-<p>
-  <strong>Title:</strong>
-  <%= @list.title %>
-</p>
+<div class="contianer">
+  <p>
+    <strong>Title:</strong>
+    <%= @list.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @list.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @list.description %>
+  </p>
 
+  <p>
+    <strong>Created at:</strong>
+    <%= @list.created_at %>
+  </p>
+</div>
+<%= link_to 'Edit', edit_todo_list_path(@list) %>
 <%= link_to 'Back', todo_lists_path %>

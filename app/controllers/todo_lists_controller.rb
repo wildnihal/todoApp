@@ -1,4 +1,5 @@
 class TodoListsController < ApplicationController
+
   def index
     @list = TodoList.all
   end
@@ -8,6 +9,7 @@ class TodoListsController < ApplicationController
   end
 
   def create
+    
     @list = TodoList.new(todo_list_params)
     respond_to do |format|
       if @list.save
@@ -20,15 +22,31 @@ class TodoListsController < ApplicationController
     end
   end
 
-  
+  def edit
+    @list = TodoList.find(params[:id])
+
+  end
+
+  def update
+    @list = TodoList.find(params[:id])
+    if @list.update_attributes(todo_list_params)
+      flash[:success] = "Profile  updated"
+      redirect_to @list
+    else
+      flash[:success] = "Profile couldn't be updated"
+      render 'edit'
+    end
+
+  end
 
   def show
-    @list = TodoList.last
+    @list = TodoList.find(params[:id])
   end
 
   private
 
   def todo_list_params
+    debugger
     params.require(:todo_list).permit(:title, :description)
   end
 
