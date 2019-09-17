@@ -47,7 +47,7 @@ before_action :authenticate_user!
   private
 
   def todo_list_params
-    params.require(:todo_list).permit(:title, :description)
+    params.require(:todo_list).permit(:title, :description, :due_date)
   end
 
 end

@@ -10,6 +10,10 @@
     <%= form.text_field :description, id: :list_description %>
   </div>
 
+  <div class="field">
+    <%= form.label :due_date %>
+    <%= form.date_field :due_date, :id => "datepicker" %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>
