@@ -2,7 +2,8 @@ class TodoListsController < ApplicationController
 
 before_action :authenticate_user!
   def index
-    @list = TodoList.all
+
+    @list = TodoList.where user_id: current_user.id
   end
 
   def new
@@ -12,7 +13,6 @@ before_action :authenticate_user!
   def create
     @list = TodoList.new(todo_list_params)
     respond_to do |format|
-      debugger
       if @list.save
         format.html { redirect_to  @list, notice: 'Todo list was successfully created.' }
         format.json { render :show, status: :created, location: @list }
@@ -47,7 +47,6 @@ before_action :authenticate_user!
   private
 
   def todo_list_params
-    debugger
     params.require(:todo_list).permit(:title, :description, :user_id)
   end
 
