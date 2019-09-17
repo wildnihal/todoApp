@@ -12,6 +12,7 @@ before_action :authenticate_user!
 
   def create
     @list = TodoList.new(todo_list_params)
+    @list.user_id = current_user.id
     respond_to do |format|
       if @list.save
         format.html { redirect_to  @list, notice: 'Todo list was successfully created.' }
@@ -25,7 +26,6 @@ before_action :authenticate_user!
 
   def edit
     @list = TodoList.find(params[:id])
-
   end
 
   def update
@@ -47,7 +47,7 @@ before_action :authenticate_user!
   private
 
   def todo_list_params
-    params.require(:todo_list).permit(:title, :description, :user_id)
+    params.require(:todo_list).permit(:title, :description)
   end
 
 end
