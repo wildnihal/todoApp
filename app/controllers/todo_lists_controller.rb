@@ -1,5 +1,6 @@
 class TodoListsController < ApplicationController
 
+before_action :authenticate_user!
   def index
     @list = TodoList.all
   end
@@ -9,7 +10,6 @@ class TodoListsController < ApplicationController
   end
 
   def create
-    
     @list = TodoList.new(todo_list_params)
     respond_to do |format|
       if @list.save
@@ -33,7 +33,7 @@ class TodoListsController < ApplicationController
       flash[:success] = "Profile  updated"
       redirect_to @list
     else
-      flash[:success] = "Profile couldn't be updated"
+      flash[:danger] = "Profile couldn't be updated"
       render 'edit'
     end
 
@@ -46,7 +46,6 @@ class TodoListsController < ApplicationController
   private
 
   def todo_list_params
-    debugger
     params.require(:todo_list).permit(:title, :description)
   end
 
