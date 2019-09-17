@@ -1,5 +1,7 @@
 <%= form_with(model: @list, local: true) do |form| %>
 
+  <input type="hidden" id="UserId" name="todo_list[user_id]" value="1">
+
   <div class="field">
     <%= form.label :title %>
     <%= form.text_area :title, id: :list_title %>
