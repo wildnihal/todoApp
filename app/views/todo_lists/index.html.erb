@@ -8,5 +8,7 @@
       <td><%= link_to 'Show', list %></td>
     </tr>
   <% end %>
+  <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
   </tbody>
+
 </table>
