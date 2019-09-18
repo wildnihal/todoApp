@@ -13,6 +13,14 @@
     <strong>Date to be completed:</strong>
     <%= @list.due_date %>
   </p>
+
+  <p>
+    <strong>Priority:</strong>
+    <%= @list.priority %>
+  </p>
+
 </div>
 <%= link_to 'Edit', edit_todo_list_path(@list) %>
+<%= link_to 'Delete',todo_lists_path  %>
 <%= link_to 'Back', todo_lists_path %>
+

@@ -2,8 +2,7 @@ class TodoListsController < ApplicationController
 
 before_action :authenticate_user!
   def index
-
-    @list = TodoList.where user_id: current_user.id
+    @list = TodoList.where(user_id:  current_user.id).order(priority: :asc)
   end
 
   def new
@@ -44,10 +43,16 @@ before_action :authenticate_user!
     @list = TodoList.find(params[:id])
   end
 
+  def destroy
+    @list = TodoList.find(params[:id])
+    @list.destroy
+    redirect_to todo_lists_path
+  end
+
   private
 
   def todo_list_params
-    params.require(:todo_list).permit(:title, :description, :due_date)
+    params.require(:todo_list).permit(:title, :description, :due_date, :priority)
   end
 
 end
