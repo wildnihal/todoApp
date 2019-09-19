@@ -2,7 +2,7 @@ class TodoListsController < ApplicationController
 
 before_action :authenticate_user!
   def index
-    @list = TodoList.where(user_id:  current_user.id).order(priority: :asc)
+    @list = TodoList.where(user_id:  current_user.id).order(priority: :desc).page params[:page]
   end
 
   def new
@@ -44,8 +44,7 @@ before_action :authenticate_user!
   end
 
   def destroy
-    @list = TodoList.find(params[:id])
-    @list.destroy
+    @list = TodoList.find(params[:id]).destroy
     redirect_to todo_lists_path
   end
 
