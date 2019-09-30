@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class TodoListTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  def setup
+    @list = TodoList.new(title: "Benjamin", description: "The man who hopes dies fasting", due_date: DateTime.now)
+  end
+
 end
