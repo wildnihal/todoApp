@@ -64,7 +64,7 @@ group :development do
 
 group :test do
   gem 'capybara', '~> 2.13'
-  gem 'capybara-rails', '~> 0.0.2'
+  gem 'capybara-screenshot'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
 end
