@@ -1,6 +1,8 @@
 class TodoListsController < ApplicationController
 
-before_action :authenticate_user!
+  before_action :authenticate_user!
+  before_action :set_todo_list, only: [:edit,:update,:show,:destroy]
+
   def index
     @list = TodoList.where(user_id:  current_user.id).order(priority: :desc).page params[:page]
   end
@@ -24,11 +26,9 @@ before_action :authenticate_user!
   end
 
   def edit
-    @list = TodoList.find(params[:id])
   end
 
   def update
-    @list = TodoList.find(params[:id])
     if @list.update_attributes(todo_list_params)
       flash[:success] = "Profile  updated"
       redirect_to @list
@@ -36,15 +36,13 @@ before_action :authenticate_user!
       flash[:danger] = "Profile couldn't be updated"
       render 'edit'
     end
-
   end
 
   def show
-    @list = TodoList.find(params[:id])
   end
 
   def destroy
-    @list = TodoList.find(params[:id]).destroy
+    @list.destroy
     redirect_to todo_lists_path
   end
 
@@ -52,6 +50,10 @@ before_action :authenticate_user!
 
   def todo_list_params
     params.require(:todo_list).permit(:title, :description, :due_date, :priority)
+  end
+
+  def set_todo_list
+    @list = TodoList.find(params[:id])
   end
 
 end

@@ -17,7 +17,9 @@
 
   <div class="field">
     <%= form.label :priority %>
-    <%= form.select :priority, TodoList::PRIORITY_RANGE.to_a,{}, id: :list_priority%>  </div>
+    <%= form.select :priority, TodoList::PRIORITY_RANGE.to_a,{}, id: :list_priority%>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
