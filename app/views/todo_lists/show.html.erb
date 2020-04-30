@@ -19,6 +19,13 @@
     <%= @list.priority %>
   </p>
 
+  <div id="todo_items">
+    <%= render @list.todo_items %>
+    <div id="form">
+      <%= render 'todo_items/form' %>
+    </div>
+  </div>
+
 </div>
 <%= link_to 'Edit', edit_todo_list_path(@list) %>
 <%= link_to 'Delete',todo_lists_path  %>

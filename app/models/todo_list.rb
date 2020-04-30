@@ -1,5 +1,6 @@
 class TodoList < ApplicationRecord
   belongs_to :user
+  has_many :todo_items, dependent: :destroy
   paginates_per 3
   PRIORITY_RANGE = 1..5
   validates :title, presence: true, length: {maximum: 50}

@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-   # get '/todo_lists' => 'todo_lists#index'
-  resources :todo_lists
+  # get '/todo_lists' => 'todo_lists#index'
   root "todo_lists#index"
   devise_for :users
-  resources :users do
-    resources :todo_lists
+  resources :todo_lists do
+    resources :todo_items
   end
 end
